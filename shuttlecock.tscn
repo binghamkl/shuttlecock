@@ -1,17 +1,103 @@
-[gd_scene load_steps=2 format=3 uid="uid://ol3fy5wrdj7k"]
+[gd_scene load_steps=8 format=3 uid="uid://ol3fy5wrdj7k"]
 
 [ext_resource type="Texture2D" uid="uid://crpqg4fvwqnmc" path="res://Images/shuttlecock.png" id="1_ih47p"]
+[ext_resource type="Script" path="res://Shuttlecock.gd" id="1_r2444"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n77np"]
+rough = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h8rm"]
+size = Vector2(39.8621, 40)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cwllb"]
+rough = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4teu5"]
+rough = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6pawo"]
+rough = true
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Shuttlecock" type="RigidBody2D" parent="."]
-position = Vector2(264, 122)
-gravity_scale = 0.0
-linear_velocity = Vector2(1000, 0)
+[node name="Shuttlecock" type="CharacterBody2D" parent="."]
+position = Vector2(-100, -122)
+script = ExtResource("1_r2444")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shuttlecock"]
 position = Vector2(-264, -122)
 polygon = PackedVector2Array(224, 156, 224, 85, 286, 111, 294, 111, 300, 113, 305, 121, 305, 127, 300, 132, 287, 132)
+metadata/_edit_lock_ = true
 
 [node name="ShuttlecockImage" type="Sprite2D" parent="Shuttlecock"]
 texture = ExtResource("1_ih47p")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-581, -324)
+scale = Vector2(29, 1)
+physics_material_override = SubResource("PhysicsMaterial_n77np")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Walls/TopWall"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_vertical = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2(19.9655, 20)
+shape = SubResource("RectangleShape2D_4h8rm")
+metadata/_edit_lock_ = true
+
+[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-580, 286)
+scale = Vector2(29, 1)
+physics_material_override = SubResource("PhysicsMaterial_cwllb")
+
+[node name="ColorRect" type="ColorRect" parent="Walls/BottomWall"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_vertical = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+position = Vector2(19.9655, 20)
+shape = SubResource("RectangleShape2D_4h8rm")
+metadata/_edit_lock_ = true
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(535, -282)
+scale = Vector2(1, 14)
+physics_material_override = SubResource("PhysicsMaterial_4teu5")
+
+[node name="ColorRect" type="ColorRect" parent="Walls/RightWall"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_vertical = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(19.9655, 20)
+shape = SubResource("RectangleShape2D_4h8rm")
+metadata/_edit_lock_ = true
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-574, -281)
+scale = Vector2(1, 14)
+physics_material_override = SubResource("PhysicsMaterial_6pawo")
+
+[node name="ColorRect" type="ColorRect" parent="Walls/LeftWall"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_vertical = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(19.9655, 20)
+shape = SubResource("RectangleShape2D_4h8rm")
+metadata/_edit_lock_ = true

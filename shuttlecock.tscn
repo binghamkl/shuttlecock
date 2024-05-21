@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ol3fy5wrdj7k"]
+
+[ext_resource type="Texture2D" uid="uid://crpqg4fvwqnmc" path="res://Images/shuttlecock.png" id="1_ih47p"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Shuttlecock" type="RigidBody2D" parent="."]
+position = Vector2(264, 122)
+gravity_scale = 0.0
+linear_velocity = Vector2(1000, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shuttlecock"]
+position = Vector2(-264, -122)
+polygon = PackedVector2Array(224, 156, 224, 85, 286, 111, 294, 111, 300, 113, 305, 121, 305, 127, 300, 132, 287, 132)
+
+[node name="ShuttlecockImage" type="Sprite2D" parent="Shuttlecock"]
+texture = ExtResource("1_ih47p")

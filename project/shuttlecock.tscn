@@ -126,7 +126,7 @@ offset_left = 308.0
 offset_top = -321.0
 offset_right = 360.0
 offset_bottom = -298.0
-text = "Score1 :"
+text = "Score :"
 
 [node name="ScoreValue" type="Label" parent="Score Label"]
 layout_mode = 0

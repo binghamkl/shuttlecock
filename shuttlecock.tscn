@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ol3fy5wrdj7k"]
+[gd_scene load_steps=10 format=3 uid="uid://ol3fy5wrdj7k"]
 
 [ext_resource type="Texture2D" uid="uid://crpqg4fvwqnmc" path="res://Images/shuttlecock.png" id="1_ih47p"]
+[ext_resource type="Script" path="res://main.gd" id="1_pbe4o"]
 [ext_resource type="Script" path="res://Shuttlecock.gd" id="1_r2444"]
+[ext_resource type="Script" path="res://PlayerBat.gd" id="3_xxkw2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n77np"]
 rough = true
@@ -15,13 +17,18 @@ rough = true
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4teu5"]
 rough = true
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6pawo"]
-rough = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j56d"]
+size = Vector2(20, 122.067)
 
-[node name="Node2D" type="Node2D"]
+[node name="main" type="Node2D"]
+script = ExtResource("1_pbe4o")
 
 [node name="Shuttlecock" type="CharacterBody2D" parent="."]
-position = Vector2(-100, -122)
+position = Vector2(-436, -28)
+rotation = 0.174533
+disable_mode = 2
+motion_mode = 1
+slide_on_ceiling = false
 script = ExtResource("1_r2444")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Shuttlecock"]
@@ -47,6 +54,7 @@ metadata/_edit_lock_ = true
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_vertical = 0
+color = Color(0.952941, 0.498039, 0.243137, 1)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
@@ -63,6 +71,7 @@ physics_material_override = SubResource("PhysicsMaterial_cwllb")
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_vertical = 0
+color = Color(0.952941, 0.498039, 0.243137, 1)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
@@ -79,6 +88,7 @@ physics_material_override = SubResource("PhysicsMaterial_4teu5")
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_vertical = 0
+color = Color(0.952941, 0.498039, 0.243137, 1)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
@@ -86,18 +96,30 @@ position = Vector2(19.9655, 20)
 shape = SubResource("RectangleShape2D_4h8rm")
 metadata/_edit_lock_ = true
 
-[node name="LeftWall" type="StaticBody2D" parent="Walls"]
-position = Vector2(-574, -281)
-scale = Vector2(1, 14)
-physics_material_override = SubResource("PhysicsMaterial_6pawo")
+[node name="PlayerBat" type="CharacterBody2D" parent="."]
+position = Vector2(-515, -69)
+scale = Vector2(0.760001, 2.68)
+script = ExtResource("3_xxkw2")
 
-[node name="ColorRect" type="ColorRect" parent="Walls/LeftWall"]
+[node name="ColorRect" type="ColorRect" parent="PlayerBat"]
 offset_right = 40.0
 offset_bottom = 40.0
-size_flags_vertical = 0
+color = Color(0, 0, 1, 1)
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
-position = Vector2(19.9655, 20)
-shape = SubResource("RectangleShape2D_4h8rm")
+[node name="PlayerCollisionShape" type="CollisionPolygon2D" parent="PlayerBat"]
+position = Vector2(13, 20.3358)
+polygon = PackedVector2Array(19.8947, -19.5896, 25.1578, -12.5, 25.1578, -8.76865, 25.1578, -3.17164, 25.1578, -0.559699, 25.1578, 3.91791, 25.1578, 8.39553, 21.2105, 13.6194, 15.9473, 19.2164, -11.6842, 19.2164, -15.6315, -20.3358)
 metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-892, -54)
+scale = Vector2(2.48, 7.16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(102.419, 9.63687)
+scale = Vector2(1, -19.7315)
+shape = SubResource("RectangleShape2D_0j56d")
+
+[connection signal="score" from="Shuttlecock" to="." method="_on_shuttlecock_score"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

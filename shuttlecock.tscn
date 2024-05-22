@@ -121,5 +121,20 @@ position = Vector2(102.419, 9.63687)
 scale = Vector2(1, -19.7315)
 shape = SubResource("RectangleShape2D_0j56d")
 
+[node name="Score Label" type="Label" parent="."]
+offset_left = 308.0
+offset_top = -321.0
+offset_right = 360.0
+offset_bottom = -298.0
+text = "Score :"
+
+[node name="ScoreValue" type="Label" parent="Score Label"]
+layout_mode = 0
+offset_left = 62.0
+offset_right = 102.0
+offset_bottom = 23.0
+text = "0	"
+horizontal_alignment = 2
+
 [connection signal="score" from="Shuttlecock" to="." method="_on_shuttlecock_score"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

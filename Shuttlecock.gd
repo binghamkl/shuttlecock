@@ -50,5 +50,5 @@ func _physics_process(delta):
 				velocity.y += y_delta if velocity.y > 0 else -1 * y_delta
 			tween = create_tween()
 			tween.tween_property($".", "rotation", velocity.angle(), 1).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-			if collide.get_collider() == PlayerBat:
+			if collide.get_collider() == $"../PlayerBat":
 				score.emit()	

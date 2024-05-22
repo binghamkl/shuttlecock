@@ -38,7 +38,7 @@ func _physics_process(delta):
 		var collide = move_and_collide(velocity * delta)
 		if collide:
 			
-			velocity = velocity.bounce(collide.get_normal()) + Vector2(float((randi() % 100)) / 10 - 5.0, float(randi() % 100) / 10 - 5.0)
+			velocity = velocity.bounce(collide.get_normal()) + Vector2(float((randi() % 100)) / 20 - 10.0, float(randi() % 100) / 10 - 5.0)
 			speed = speed + 10
 			if velocity.x == 0:
 				velocity.y = speed

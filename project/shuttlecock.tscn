@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ol3fy5wrdj7k"]
+[gd_scene load_steps=12 format=3 uid="uid://ol3fy5wrdj7k"]
 
 [ext_resource type="Texture2D" uid="uid://crpqg4fvwqnmc" path="res://Images/shuttlecock.png" id="1_ih47p"]
 [ext_resource type="Script" path="res://main.gd" id="1_pbe4o"]
 [ext_resource type="Script" path="res://Shuttlecock.gd" id="1_r2444"]
 [ext_resource type="Script" path="res://PlayerBat.gd" id="3_xxkw2"]
+[ext_resource type="Texture2D" uid="uid://dmmlxc00rkr54" path="res://Images/playerbat.png" id="5_fw7bk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n77np"]
 rough = true
@@ -19,6 +20,10 @@ rough = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0j56d"]
 size = Vector2(20, 122.067)
+
+[sub_resource type="LabelSettings" id="LabelSettings_swpr5"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_pbe4o")
@@ -81,7 +86,7 @@ metadata/_edit_lock_ = true
 
 [node name="RightWall" type="StaticBody2D" parent="Walls"]
 position = Vector2(535, -282)
-scale = Vector2(1, 14)
+scale = Vector2(0.982, 14.15)
 physics_material_override = SubResource("PhysicsMaterial_4teu5")
 
 [node name="ColorRect" type="ColorRect" parent="Walls/RightWall"]
@@ -101,16 +106,15 @@ position = Vector2(-515, -69)
 scale = Vector2(0.760001, 2.68)
 script = ExtResource("3_xxkw2")
 
-[node name="ColorRect" type="ColorRect" parent="PlayerBat"]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0, 0, 1, 1)
-metadata/_edit_lock_ = true
-
 [node name="PlayerCollisionShape" type="CollisionPolygon2D" parent="PlayerBat"]
 position = Vector2(13, 20.3358)
-polygon = PackedVector2Array(19.8947, -19.5896, 25.1578, -12.5, 25.1578, -8.76865, 25.1578, -3.17164, 25.1578, -0.559699, 25.1578, 3.91791, 25.1578, 8.39553, 21.2105, 13.6194, 15.9473, 19.2164, -11.6842, 19.2164, -15.6315, -20.3358)
+polygon = PackedVector2Array(12, -20.3358, 17.2631, -15.4851, 17.2631, -9.51491, 17.2631, -4.66416, 17.2631, 0.932856, 17.2631, 6.15674, 17.2631, 10.2612, 15.9473, 13.9926, 15.9473, 16.9776, 12, 18.097, 5.42108, 19.2164, -13, 19.2164, -15.6315, -21.0821)
 metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBat"]
+position = Vector2(14.4737, 19.403)
+scale = Vector2(1, 0.4)
+texture = ExtResource("5_fw7bk")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-892, -54)
@@ -135,6 +139,27 @@ offset_right = 102.0
 offset_bottom = 23.0
 text = "0	"
 horizontal_alignment = 2
+
+[node name="Directions and Score" type="AcceptDialog" parent="."]
+title = "Shuttlepong"
+initial_position = 1
+size = Vector2i(690, 213)
+visible = true
+always_on_top = true
+transparent = true
+
+[node name="Directions" type="Label" parent="Directions and Score"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 682.0
+offset_bottom = 164.0
+text = "Welcome to Shuttlepong.
+
+Use the up/down arrows on the keyboard to move.  
+Space to start the shuttlecock.
+
+You get 10 points each time you hit the shuttlecock, and with each bounce it speeds up."
+label_settings = SubResource("LabelSettings_swpr5")
 
 [connection signal="score" from="Shuttlecock" to="." method="_on_shuttlecock_score"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

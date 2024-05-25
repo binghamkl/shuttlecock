@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://ol3fy5wrdj7k"]
+[gd_scene load_steps=18 format=3 uid="uid://ol3fy5wrdj7k"]
 
 [ext_resource type="Texture2D" uid="uid://crpqg4fvwqnmc" path="res://Images/shuttlecock.png" id="1_ih47p"]
 [ext_resource type="Script" path="res://main.gd" id="1_pbe4o"]
 [ext_resource type="Script" path="res://Shuttlecock.gd" id="1_r2444"]
 [ext_resource type="Script" path="res://PlayerBat.gd" id="3_xxkw2"]
+[ext_resource type="AudioStream" uid="uid://6uvlce2cp7ur" path="res://audio/sfx/bonk2.wav" id="4_007cm"]
 [ext_resource type="Texture2D" uid="uid://56kavk6tblr0" path="res://Images/music.png" id="4_aesoa"]
 [ext_resource type="Script" path="res://Music2.gd" id="4_f0753"]
 [ext_resource type="Texture2D" uid="uid://dmmlxc00rkr54" path="res://Images/playerbat.png" id="5_fw7bk"]
@@ -51,6 +52,9 @@ metadata/_edit_lock_ = true
 [node name="ShuttlecockImage" type="Sprite2D" parent="Shuttlecock"]
 texture = ExtResource("1_ih47p")
 metadata/_edit_lock_ = true
+
+[node name="Contact" type="AudioStreamPlayer" parent="Shuttlecock"]
+stream = ExtResource("4_007cm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

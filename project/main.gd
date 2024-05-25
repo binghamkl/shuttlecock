@@ -11,12 +11,12 @@ You get 10 points each time you hit the shuttlecock, and with each bounce it spe
 func _ready():
 	$"Directions and Score".popup()
 
-func _process(delta):
+func _process(_delta):
 	if !$Shuttlecock.running:
 		$Shuttlecock.SetPosition($PlayerBat.position + Vector2(100, 0))
 
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(_body):
 	var lastScore = score
 	$"Directions and Score".popup()
 	$"Directions and Score/Directions".text = instruction_message.format({"score":lastScore})

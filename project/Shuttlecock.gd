@@ -7,8 +7,9 @@ const SPEED = 300.0
 
 var tween : Tween
 @export var running : bool = false
-var speed : int = SPEED
+var speed : float = SPEED
 var acceleration : int = 20
+
 
 func _ready():
 	start()
@@ -24,11 +25,11 @@ func start():
 
 
 func SetPosition(pos : Vector2):
-	position = pos
+	position = pos + Vector2(0, 50)
 	rotation = velocity.angle()
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("start"):
 		running = true
 

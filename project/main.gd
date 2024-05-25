@@ -27,3 +27,4 @@ func _on_area_2d_body_entered(_body):
 func _on_shuttlecock_score():
 	score += 10
 	$"Score Label/ScoreValue".text = str(score)
+

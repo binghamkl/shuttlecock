@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name ShuttleCock
 
 signal score()
+signal bounce(direction : Vector3, pos)
 
 const SPEED = 300.0
 
@@ -39,6 +40,7 @@ func _physics_process(delta):
 		var collide = move_and_collide(velocity * delta)
 		if collide:
 			play_bonk()
+			bounce.emit(velocity, collide.get_position())
 			
 			velocity = velocity.bounce(collide.get_normal()) + Vector2(float((randi() % 100)) / 20 - 10.0, float(randi() % 100) / 10 - 5.0)
 			speed = speed + 10

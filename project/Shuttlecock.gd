@@ -41,7 +41,8 @@ func _physics_process(delta):
 		if collide:
 			play_bonk()
 			bounce.emit(velocity, collide.get_position())
-			
+			if collide.get_collider().has_method("bounce"):
+				collide.get_collider().bounce()
 			velocity = velocity.bounce(collide.get_normal()) + Vector2(float((randi() % 100)) / 20 - 10.0, float(randi() % 100) / 10 - 5.0)
 			speed = speed + 10
 			if velocity.x == 0:

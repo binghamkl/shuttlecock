@@ -24,6 +24,7 @@ damping_min = 2.0
 damping_max = 2.0
 color_ramp = SubResource("GradientTexture1D_d8x52")
 turbulence_enabled = true
+turbulence_noise_strength = 0.2
 turbulence_noise_scale = 5.0
 
 [node name="ParticleNode" type="Node2D"]
@@ -37,3 +38,5 @@ texture = ExtResource("1_12us0")
 explosiveness = 1.0
 visibility_rect = Rect2(-5, -4.9991, 10, 60.6324)
 trail_enabled = true
+
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

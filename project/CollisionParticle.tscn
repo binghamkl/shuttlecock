@@ -34,17 +34,16 @@ colors = PackedColorArray(1, 1, 1, 1, 0.647887, 0.647887, 0.647887, 1)
 [node name="ParticleNode" type="Node2D"]
 script = ExtResource("1_e6ora")
 
-[node name="GPUParticles2DOld" type="GPUParticles2D" parent="."]
-visible = false
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1, 0.172549, 0.0235294, 1)
 amount = 11
 process_material = SubResource("ParticleProcessMaterial_cwkki")
 texture = ExtResource("1_12us0")
 explosiveness = 1.0
 visibility_rect = Rect2(-5, -4.9991, 10, 60.6324)
-trail_enabled = true
 
-[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="GPUParticles2DOld2" type="CPUParticles2D" parent="."]
+visible = false
 modulate = Color(1, 0.172549, 0.0235294, 1)
 amount = 11
 explosiveness = 1.0
@@ -68,5 +67,5 @@ scale_amount_max = 2.0
 color_ramp = SubResource("Gradient_2c1rd")
 hue_variation_max = 0.22
 
-[connection signal="finished" from="GPUParticles2DOld" to="." method="_on_gpu_particles_2d_finished"]
 [connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]
+[connection signal="finished" from="GPUParticles2DOld2" to="." method="_on_gpu_particles_2d_finished"]

@@ -9,7 +9,7 @@ func _ready():
 
 
 func setDirection(direction : Vector3):
-	$GPUParticles2D.process_material.direction = direction * -1
+	$GPUParticles2D.direction = Vector2(direction.x, direction.y) * -1
 
 
 func _on_gpu_particles_2d_finished():

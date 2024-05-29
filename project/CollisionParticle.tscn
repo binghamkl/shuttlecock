@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cysbwsbmkj88d"]
+[gd_scene load_steps=7 format=3 uid="uid://cysbwsbmkj88d"]
 
 [ext_resource type="Texture2D" uid="uid://kps2plawqfjm" path="res://Images/particle.png" id="1_12us0"]
 [ext_resource type="Script" path="res://CollisionParticle.gd" id="1_e6ora"]
@@ -27,10 +27,15 @@ turbulence_enabled = true
 turbulence_noise_strength = 0.2
 turbulence_noise_scale = 5.0
 
+[sub_resource type="Gradient" id="Gradient_2c1rd"]
+offsets = PackedFloat32Array(0, 0.0933333)
+colors = PackedColorArray(1, 1, 1, 1, 0.647887, 0.647887, 0.647887, 1)
+
 [node name="ParticleNode" type="Node2D"]
 script = ExtResource("1_e6ora")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2DOld" type="GPUParticles2D" parent="."]
+visible = false
 modulate = Color(1, 0.172549, 0.0235294, 1)
 amount = 11
 process_material = SubResource("ParticleProcessMaterial_cwkki")
@@ -39,4 +44,29 @@ explosiveness = 1.0
 visibility_rect = Rect2(-5, -4.9991, 10, 60.6324)
 trail_enabled = true
 
+[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(1, 0.172549, 0.0235294, 1)
+amount = 11
+explosiveness = 1.0
+randomness = 0.5
+texture = ExtResource("1_12us0")
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.3
+radial_accel_min = 1.0
+radial_accel_max = 1.0
+tangential_accel_min = 1.0
+tangential_accel_max = 12.12
+damping_min = 2.0
+damping_max = 6.061
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_2c1rd")
+hue_variation_max = 0.22
+
+[connection signal="finished" from="GPUParticles2DOld" to="." method="_on_gpu_particles_2d_finished"]
 [connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

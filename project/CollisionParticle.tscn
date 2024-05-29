@@ -41,6 +41,7 @@ process_material = SubResource("ParticleProcessMaterial_cwkki")
 texture = ExtResource("1_12us0")
 explosiveness = 1.0
 visibility_rect = Rect2(-5, -4.9991, 10, 60.6324)
+trail_enabled = true
 
 [node name="GPUParticles2DOld2" type="CPUParticles2D" parent="."]
 visible = false
